@@ -1,4 +1,4 @@
-from __main__ import app
+from app import app as app
 from models import db, Titles, Departments, Skills, Employees, Scores
 
 

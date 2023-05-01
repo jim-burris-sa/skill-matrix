@@ -1,4 +1,4 @@
-from __main__ import app
+from app import app as app
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import  UniqueConstraint, ForeignKey
 

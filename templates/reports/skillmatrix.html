@@ -1,0 +1,41 @@
+
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container" >
+
+    <div></div>
+    <p> <h2>{{title}}</h2>  </p>
+   <div class="row">
+     <div class="col-8">
+     <strong>Search For : {{tag}} </strong>
+     </div>
+    
+     <div class="col-4">
+       <form action="/reports/skillmatrix" method="post" autocomplete="off"> 
+        <div class="row">
+            <div class="col-8">
+                {{form.Department(class="form-control form-control-user")}}
+            </div>
+            <div class="col-4" align="left">
+                <input type="submit" value="Search" class="form-control btn btn-primary " name=""> 
+            </div>
+        </div>
+       </form> 
+     </div>
+   </div>    
+
+   <div class="row"><br></div>
+   <div class="row">
+
+    {% for table in tables %}
+            {{ table|safe }}
+    {% endfor %}
+
+</div>  
+
+{% endblock %}
+
+
+<!-- <table class="table table-striped" id="users"></table> -->
+

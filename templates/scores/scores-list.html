@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div></div>
+   <p><a href="/scores/add" class="btn btn-primary my-2">Add New Score</a> <h2>{{title}}</h2>  </p>
+  <div class="row">
+    <div class="col-8">
+    <strong>Search For : {{tag}} </strong>
+    </div>
+   
+    <div class="col-4">
+      <form action="/scores" method="post" autocomplete="off"> 
+      <div class="row">
+        <div class="col-6">
+          <input type="text" class="form-control" name="tag" id="tag"  placeholder="Search Names"/> 
+        </div>
+        <div class="col-6" align="left">
+          <input type="submit" value="Search" class="form-control btn btn-primary " name=""> 
+        </div>
+      </div>
+      </form> 
+    </div>
+  </div>
+  <div class="row"><br></div>
+  <div class="row">
+  <div class="col-12">
+    <table id="example" class="table table-bordered table-hover" style="width:100%">
+          <thead>
+              <tr></tr>
+                <th scope="col">Employee</th>
+                <th scope="col">Skill</th>
+                <th scope="col">Score</th>
+                <th scope="col">Created</th>
+                <th scope="col">Updated</th>
+                <th scope="col">Action </th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for row in results %}
+            <tr>
+            <td scope="row">{{ row['FullName']}}</td>
+            <td scope="row">{{ row['SkillName']}}</td>
+            <td scope="row">{{ row['Score']}}</td>
+            <td scope="row">{{ row['CreateDate']}}</td>
+            <td scope="row">{{ row['UpdateDate']}}</td>
+            
+            <td scope="row">
+                <a href="/scores/edit/{{row['ID']}}" class="btn btn-primary btn-sm">Edit</a>
+            </td>
+            </tr>
+          {% endfor %}  
+          </tbody>
+  
+    </table>
+  
+   </div>
+  </div>
+   
+  </div> 
+
+{% endblock %}

@@ -1,0 +1,6 @@
+Flask
+Flask-SQLAlchemy
+WTForms
+flask-wtf
+pandas
+psycopg2-binary

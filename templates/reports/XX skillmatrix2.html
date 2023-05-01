@@ -1,0 +1,66 @@
+
+{% extends "layout.html" %}
+{% block content %}
+
+
+<table>
+    <tr>
+        {% for col in column_names %}
+        <th>{{col}}</th>
+        {% endfor %}
+    </tr>
+    {% for row in row_data %}
+    <tr>
+        {% for col, row_ in zip(column_names, row) %}
+        {% if col == link_column %}
+        <td>
+            <button type="submit" value={{ row_ }} name="person_id" form="patient_form" class="patient_button">
+                {{ row_ }}
+            </button>
+        </td>
+        {% else %}
+
+            {% if row_ == "nan" %} 
+                <td></td>
+            {% else %}
+                <td>{{row_}}</td>
+            {% endif %}
+        
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+</table>
+
+<style type="text/css">
+    th {
+        background-color: white;
+        color: #072a57;
+        -ms-writing-mode: tb-rl;
+        -webkit-writing-mode: vertical-rl;
+        writing-mode: vertical-rl;
+        transform: rotate(-180deg);
+        white-space: nowrap;
+        border: 1px black solid;
+    } 
+
+
+    td {
+        border-collapse:collapse;
+        border: 1px black solid;
+    }
+    tr:nth-of-type(5) td:nth-of-type(1) {
+        visibility: hidden;
+    }
+    #rotate {
+         -moz-transform: rotate(-45.0deg);  /* FF3.5+ */
+           -o-transform: rotate(-45.0deg);  /* Opera 10.5 */
+      -webkit-transform: rotate(-45.0deg);  /* Saf3.1+, Chrome */
+                 filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);  /* IE6,IE7 */
+             -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+    }
+    </style>
+
+
+{% endblock %}

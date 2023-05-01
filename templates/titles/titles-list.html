@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- Employee List Section -->
+<section class="page-section" id="Employee-list">
+    <div class="container">
+        <h2 class="text-center mt-0">{{ title }}</h2>
+        <!-- <hr class="divider my-4"> -->
+
+        <a href="/titles/add/" class="btn btn-primary my-2">Add New Title</a>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <!-- <th scope="col">ID</th> -->
+                        <th scope="col">Title</th>
+                        <th scope="col">Created</th>
+                        <!-- <th scope="col">Updated</th> -->
+                        <!-- <th scope="col">Action </th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for title in titles %}
+                        <tr>
+                            <!-- <td scope="row">{{ title['ID']}}</td> -->
+                            <td scope="row">{{ title['Title']}}</td>
+                            <td scope="row">{{ title['CreateDate']}}</td>
+                            <!-- <td scope="row">{{ title['UpdateDate']}}</td> -->
+                            
+                            <!-- <td scope="row">
+                                <a href="/titles/edit/{{title['ID']}}" class="btn btn-primary btn-sm">Edit</a>
+                            </td> -->
+
+                        </tr>
+
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

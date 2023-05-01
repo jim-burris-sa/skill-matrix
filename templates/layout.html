@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title>Skill Matrix</title>
+  {% endif %}
+ 
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
+  <link rel="stylesheet" href="{{ url_for('static',filename='stylesheets/style.css')}}" />
+   
+</head>
+
+<!-- navbar-light bg-light --> 
+<body id="page-top">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg  navbar-default" id="mainNav">
+    <div class=" container">
+      <a class="navbar-brand" style="color: white" href="/">Skill Matrix</a>
+      <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item"><a  class="nav-link js-scroll-trigger" href='/employees'>Employees</a></li> 
+          <li class="nav-item"><a  class="nav-link js-scroll-trigger" href='/departments'>Departments</a></li> 
+          <li class="nav-item"><a  class="nav-link js-scroll-trigger" href='/titles'>Titles</a></li>
+          <li class="nav-item"><a  class="nav-link js-scroll-trigger" href='/skills'>Skills</a></li>
+          <li class="nav-item"><a  class="nav-link js-scroll-trigger" href='/scores'>Scores</a></li>
+          <li class="nav-item"><a  class="nav-link js-scroll-trigger" href='/reports/skillmatrix'>Skill Matrix</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav> <!-- End of Navigation -->
+
+  {% block content %}
+  {% endblock %}
+
+  <!-- Footer -->
+  <footer class="bg-light py-4">
+    <div class="container">
+      <div class="small text-center text-muted">Copyright &copy; 2023 - Specialty Appliances</div>
+    </div>
+  </footer>
+
+</body>
+</html>

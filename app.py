@@ -1,40 +1,27 @@
-from flask import Flask, render_template, session, request, redirect, url_for, jsonify
+from flask import Flask, render_template, session, request, redirect
 from datetime import datetime
-from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired
-from wtforms import Form, StringField, validators, SelectField, HiddenField
+from wtforms import Form, StringField, validators, SelectField
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import  UniqueConstraint, ForeignKey
+from sqlalchemy import  UniqueConstraint
+import pandas as pd
+import numbers
 
-
-
-# from views import TitleForm, DepartmentsForm, SkillsForm, EmployeesForm, ScoreForm
 
 app = Flask(__name__)
 app.config.from_pyfile('config.cfg')
 db = SQLAlchemy(app)
 
-# from models import db, Titles, Departments, Skills, Employees, Scores
 
 # -------------------------------------------------------
 # Routes
 # -------------------------------------------------------
-
-
-# from routes.employees import *
-# from routes.deparments import *
-# from routes.skills import *
-# from routes.titles import *
-# from routes.scores import *
-# from routes.reports import *
 
 @app.route("/")
 def index():
     return redirect('/employees')
 
 # Departments
-# ----------------
 
 @app.route("/departments", methods=["GET", "POST"])
 def departments():
@@ -74,9 +61,8 @@ def add_department():
 
     return render_template("departments/department-edit-form.html", title = "Add Department", form=form, action='add')
 
-# Employees
-# ----------
 
+# Employees
 
 @app.route("/employees", methods=["GET", "POST"])
 def employees():
@@ -158,8 +144,6 @@ def edit_employees(id):
     return render_template("employees/employee-edit-form.html", title = "Edit Employees", form=form, id=id, action='edit')
 
 # Reports
-# -------
-
 
 @app.route("/reports/skillmatrix", methods=["GET", "POST"] )
 def skill_matrix():
@@ -228,7 +212,6 @@ def skill_matrix():
 
 
 # Scores
-# -----------
 
 @app.route("/scores", methods=["GET", "POST"])
 def scores():
@@ -290,18 +273,7 @@ def add_scores():
     return render_template("scores/score-edit-form.html", title = "Add Scores", form=form, action='add')
 
 
-# def get_departments():
-
-#     departments = Departments.query.with_entities(Departments.Department).all()
-    
-#     list = []
-#     for row in departments:
-#         list.append((row[0], row[0]))
-
-#     return list
-
 # Skills
-# ------------
 
 @app.route("/skills", methods=["GET", "POST"])
 def skill():
@@ -380,7 +352,6 @@ def edit_skill(id):
 
 
 # Titles
-# ------------
 
 @app.route("/titles")
 def titles():
@@ -435,7 +406,6 @@ def edit_title(id):
         return render_template("titles/title-edit-form.html", title = "Edit Title", titles=results, id=id, form=form, action='edit')
 
 
-
 # -------------------------------------------------------
 # Views
 # -------------------------------------------------------
@@ -478,26 +448,19 @@ class SkillMatrixForm(Form):
 # Models
 # -------------------------------------------------------
 
-
 class Titles(db.Model):
     
-    # __tablename__ = 'dim_titles'
-
     Title = db.Column(db.String(100), unique=True, primary_key=True)
     CreateDate = db.Column(db.DateTime)
 
 
 class Departments(db.Model):
 
-    # __tablename__ = "dim_departments"
-
     Department = db.Column(db.String(100), unique=True, primary_key=True)
     CreateDate = db.Column(db.DateTime)
 
 
 class Skills(db.Model):
-
-    # __tablename__ = "dim_skills"
 
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Department = db.Column(db.String(100))
@@ -511,8 +474,6 @@ class Skills(db.Model):
 
 class Employees(db.Model):
 
-    # __tablename__ = "dim_employees"
-
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     FirstName = db.Column(db.String(100))
     LastName = db.Column(db.String(100))
@@ -524,8 +485,6 @@ class Employees(db.Model):
 
 
 class Scores(db.Model):
-
-    # __tablename__ = "fact_scores"   
 
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Employee_ID = db.Column(db.Integer)
@@ -561,6 +520,7 @@ def get_emp_departments():
         list.append((row[0], row[0]))
 
     return list
+
 
 def get_titles():
 
